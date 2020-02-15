@@ -40,5 +40,5 @@ uint16_t getTemp(void) {
   Serial.print(TempF);
   Serial.println(" F");
   delay(500);
-  return 0;
+  return TempC;
 }
