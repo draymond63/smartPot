@@ -6,8 +6,7 @@
 
 void setup() {
   Serial.begin(9600);
-  DDRB = 1 << PB5;
-
+  
   lcdSetup();
   UVSetup();
   MSSetup();
@@ -15,7 +14,7 @@ void setup() {
 }
 
 void loop() {
-  uint16_t temp = getTemp();
+  float temp = getTemp();
   uint16_t moist = getMoisture();
   uint16_t UV = getUV();
   displayLCD(temp, UV, moist, "PLANT");

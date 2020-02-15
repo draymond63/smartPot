@@ -21,7 +21,7 @@ void tempSetup()
 {
   Serial.begin(9600);  
 }
-uint16_t getTemp(void) {
+float getTemp(void) {
   VThermo = analogRead(A1); //change analog pin accordingly
   VThermo = (VCC/1023.00) * VThermo; //convert to Voltage
   VRes = VCC - VThermo;
