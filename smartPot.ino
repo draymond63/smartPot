@@ -7,6 +7,11 @@
 void setup() {
   Serial.begin(9600);
   DDRB = 1 << PB5;
+
+  lcdSetup();
+  UVSetup();
+  MSSetup();
+  tempSetup();
 }
 
 void loop() {
