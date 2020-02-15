@@ -10,9 +10,9 @@ void setup() {
 }
 
 void loop() {
-  displayLCD();
-  getTemp();
-  getMoisture();
-  getUV();
+  uint16_t temp = getTemp();
+  uint16_t moist = getMoisture();
+  uint16_t UV = getUV();
+  displayLCD(temp, UV, moist, "PLANT");
   delay(1000);
 }
