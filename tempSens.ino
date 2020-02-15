@@ -6,16 +6,16 @@
  */
 
 //Parameters for Voltage and Resistance values
-float VCC = 5.0;       //Voltage in [V]
-float RAdd = 10000;    //Resistor added [ohm]
-float RT0 = 10000;     //Resistor Value at T0 [ohm]
-float T0 = 298.15;     //T0 in Kelvin [K]
-float Bval = 3950;
+#define VCC 5
+#define RAdd 10000    //Resistor added [ohm]
+#define RT0 10000     //Resistor Value at T0 [ohm]
+#define T0 298.15     //T0 in Kelvin [K]
+#define Bval 3950
 
 float VThermo, VRes;          //Voltage Read at Thermo & at Resistor
 float RThermo;                //Resistance Caused
 float TempC, TempF, TempK;    //Temp in Celsius, Farenheit, Kelvin
-float ln;                    
+float ln;    
 
 void tempSetup()
 {
