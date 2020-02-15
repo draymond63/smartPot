@@ -16,7 +16,7 @@ void setup() {
 void loop() {
   float temp = getTemp();
   uint16_t moist = getMoisture();
-  uint16_t UV = getUV();
+  float UV = getUV();
   displayLCD(temp, UV, moist, "PLANT");
   delay(1000);
 }

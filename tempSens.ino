@@ -33,12 +33,5 @@ float getTemp(void) {
   TempC = TempK - 273.15;
   TempF = (TempC * (9/5)) + 32;
 
-  Serial.print("Temperature: ");
-  Serial.print(TempC);
-  Serial.print(" C and ");
-  
-  Serial.print(TempF);
-  Serial.println(" F");
-  delay(500);
   return TempC;
 }

@@ -13,7 +13,7 @@ void MSSetup() {
 
 uint16_t getMoisture(void) {
   sensorValue = constrain(map(analogRead(SensorPin), 0, 1023, 0, 100), 0, 100);
-  Serial.println(sensorValue); 
+//  Serial.println(sensorValue); 
   if (sensorValue > 80) {
     return 0;
   }
