@@ -20,7 +20,7 @@ float getUV() {
   //Use the 3.3V power pin as a reference to get a very accurate output value from sensor
   float outputVoltage = 0.005 * uvLevel;
 
-  float uvIntensity = mapfloat(outputVoltage, 0.99, 2.8, 0.0, 15.0); //Convert the voltage to a UV intensity level
+  uint16_t uvIntensity = round(mapfloat(outputVoltage, 0.99, 2.8, 0.0, 15.0) * 1000); //Convert the voltage to a UV intensity level
 
 //  Serial.println(uvIntensity);  
   return uvIntensity;

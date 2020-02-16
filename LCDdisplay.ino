@@ -1,80 +1,113 @@
-
 #include <LiquidCrystal.h>
 
 LiquidCrystal lcd(12, 11, 7, 6, 5, 4);
 int screen = 0;
 
+struct plant {
+  String n;       // Name
+  
+  float tMin;  // Temperature Range
+  float tMax;
+  
+  uint16_t uvMin; // Hours in the sun (25 000 -> 50 000 lux)
+  uint16_t uvMax;
+
+  uint16_t mMin;  // % of moistness?
+  uint16_t mMax;
+};
+//                      Name      Temp    UV    Moisture
+struct plant Cactus   {"Cactus", 0, 73, 4, 15, 10, 50};
+struct plant Succulent{"Succulent", 10, 35, 6, 10, 30, 70};
+struct plant SunFlower{"Sun Flower", 20, 40, 8, 22, 40, 80};
+
+struct plant plants[] {
+  Cactus,
+  Succulent,
+  SunFlower,
+};
+
+// -------------------------------- SETUP
 void lcdSetup() {
   lcd.begin(16, 2);
   lcd.print("Welcome!");
 }
 
-void displayLCD(float temp, float UV, uint16_t moisture, String plant, int changeScreen) {
+// -------------------------------- LOOP
+void displayLCD(float temp, uint16_t UV, uint16_t moisture, int pType, int changeScreen) {
   if (changeScreen) {
     screen++;
     screen %= 4;
-    lcd.clear();
-    switch(screen) {
-      case 0:
-        tempS(temp);
-        break;
-      case 1:
-        moistureS(moisture);
-        break;
-      case 2:
-        UVS(UV);
-        break;
-      case 3:
-        plantTypeS(plant);
-        break;
-    }
+  }
+  lcd.clear();
+  switch(screen) {
+    case 0:
+      tempS(plants[pType], temp);
+      break;
+    case 1:
+      moistureS(plants[pType], moisture);
+      break;
+    case 2:
+      UVS(plants[pType], UV);
+      break;
+    case 3:
+      plantTypeS(plants[pType]);
+      break;
   }
 }
-
-void tempS(float t) {
+// -------------------------------- SCREENS
+void tempS(struct plant p, float t) {
   String str = "Temp: ";
   str += String(t);
+  str += " C";
+  lcd.print(str);
+  lcd.setCursor(0, 1);
+  
+  if (t < p.tMin)
+    str = "Too cold";
+  else if (t >= p.tMin && t < p.tMax)
+    str = "Perfect";
+  else
+    str = "Too hot!";
   lcd.print(str);
 }
-
-void moistureS(uint16_t m) {
+void moistureS(struct plant p, uint16_t m) {
   lcd.print("Moisture: ");
   lcd.setCursor(0, 1);
   String str;
-  switch(m) {
-    case 0:
-        str += "Needs water!";
-        break;
-      case 1:
-        str += "Perfect";
-        break;
-      case 2:
-        str += "Too much!";
-        break;
-  }
+
+  Serial.println(m);
+  
+  if (m < p.mMin)
+    str = "Needs water!";
+  else if (m >= p.mMin && m < p.mMax)
+    str = "Perfect";
+  else
+    str = "Too much!";
+  
   lcd.print(str);
 }
-
-void UVS(float l) {
+void UVS(struct plant p, uint16_t l) {
   String str = "UV: ";
-  
-//  switch(m) {
-//    case 0:
-//        str += "Needs more light";
-//        break;
-//      case 1:
-//        str += "Probably fine";
-//        break;
-//      case 2:
-//        str += "";
-//        break;
-//  }
-  
   str += String(l);
-  str += "mW/cm^2";
+  str += " uW/cm^2";
+  lcd.print(str);
+
+  Serial.print(l);
+  Serial.print(", ");
+  Serial.println(p.uvMax);
+
+  if (l < p.uvMin)
+    str = "Needs water!";
+  else if (l >= p.uvMin && l < p.uvMax)
+    str = "Perfect";
+  else
+    str = "Too much!";
+
+  lcd.setCursor(0, 1);
   lcd.print(str);
 }
-
-void plantTypeS(String p) {
-  lcd.print(p);
+void plantTypeS(struct plant p) {
+  lcd.print("You have a");
+  lcd.setCursor(0, 1);
+  lcd.print(p.n);
 }
