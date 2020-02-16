@@ -38,7 +38,9 @@ void tempS(float t) {
 }
 
 void moistureS(uint16_t m) {
-  String str = "Moisture: ";
+  lcd.print("Moisture: ");
+  lcd.setCursor(0, 1);
+  String str;
   switch(m) {
     case 0:
         str += "Needs water!";
