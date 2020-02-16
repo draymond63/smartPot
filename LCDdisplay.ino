@@ -36,15 +36,14 @@ void lcdSetup() {
 }
 
 // -------------------------------- LOOP
-void displayLCD(float temp, uint16_t UV, uint16_t moisture, int pType, int changeScreen, uint8_t changePlant) {
-  Serial.println(changePlant);
+void displayLCD(float temp, uint16_t UV, uint16_t moisture, int pType, bool changeScreen, uint8_t changePlant) {
   if (changeScreen) {
     screen++;
     screen %= 4;
   } else if (changePlant) {
-    Serial.print("YUP");
     screen = 3;
   }
+  
   lcd.clear();
   switch(screen) {
     case 0:
