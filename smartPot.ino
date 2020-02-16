@@ -8,22 +8,26 @@
 #define SUCCULENT 1
 #define SUNFLOWER 2
 
-float temp;
-uint16_t moist;
-uint16_t UV;
 uint8_t pI = SUCCULENT;
+uint8_t bP = false;
 
 void setup() {
   Serial.begin(9600);
   lcdSetup();
   UVSetup();
+  btnIntSetup();
   soundSetup();
 }
 
 void loop() {
-  temp = getTemp();
-  moist = getMoisture();
-  UV = getUV();
-  displayLCD(temp, UV, moist, pI, checkSound() );
+  if (checkBtn()) {
+    pI++;
+    pI %= 3;
+    bP = true;
+    delay(5);
+  } else
+    bP = false;
+  
+  displayLCD(getTemp(), getUV(), getMoisture(), pI, checkSound(), bP );
   delay(1000);
 }

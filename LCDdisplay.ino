@@ -9,7 +9,7 @@ struct plant {
   float tMin;  // Temperature Range
   float tMax;
   
-  uint16_t uvMin; // Hours in the sun (25 000 -> 50 000 lux)
+  uint16_t uvMin; // Hours in the sun (25 000 -> 50 000 lux) XXX (currently just strength)
   uint16_t uvMax;
 
   uint16_t mMin;  // % of moistness?
@@ -36,10 +36,14 @@ void lcdSetup() {
 }
 
 // -------------------------------- LOOP
-void displayLCD(float temp, uint16_t UV, uint16_t moisture, int pType, int changeScreen) {
+void displayLCD(float temp, uint16_t UV, uint16_t moisture, int pType, int changeScreen, uint8_t changePlant) {
+  Serial.println(changePlant);
   if (changeScreen) {
     screen++;
     screen %= 4;
+  } else if (changePlant) {
+    Serial.print("YUP");
+    screen = 3;
   }
   lcd.clear();
   switch(screen) {

@@ -10,7 +10,6 @@
 int UVOUT = A2; //Output from the sensor
 
 void UVSetup() {
-  Serial.begin(9600);
   pinMode(UVOUT, INPUT);
 }
 
