@@ -4,6 +4,8 @@
 // DATE:    2020-20-15
 // STATUS:  Broken as hell
 
+String plant = "PLANT";
+
 void setup() {
   Serial.begin(9600);
   
@@ -16,7 +18,7 @@ void setup() {
 
 void loop() {
   float temp = getTemp();
-  uint16_t moist = getMoisture();
+  uint16_t moist = getMoisture(plant);
   float UV = getUV();
   displayLCD(temp, UV, moist, "PLANT");
   checkSound();
