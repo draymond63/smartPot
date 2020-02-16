@@ -1,15 +1,14 @@
 
 #include <LiquidCrystal.h>
 
-LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+LiquidCrystal lcd(12, 11, 7, 6, 5, 4);
 
 void lcdSetup() {
   lcd.begin(16, 2);
-  lcd.print("hello, world!");
-  
+  lcd.print("Welcome!");
 }
 
-void displayLCD(float temp, float UV, uint16_t moisture, String plant) {
+void displayLCD(float temp, float UV, uint16_t moisture, String plant, int changeScreen) {
   Serial.print("Species: ");
   Serial.print(plant);
   Serial.print("\t\t");

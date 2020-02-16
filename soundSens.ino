@@ -12,13 +12,6 @@ void whenSound () {
   soundDetectedVal = true;
 }
 
-void checkSound() {
-  if (soundDetectedVal==HIGH) {
-    Serial.println("hell yeah");
-    delay (1000);
-    soundDetectedVal= false;
-  }
-  else {
-    Serial.println("nope");
-  }
+int checkSound() {
+  return soundDetectedVal;
 }
