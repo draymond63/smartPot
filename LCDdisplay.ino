@@ -8,7 +8,7 @@ void lcdSetup() {
   lcd.print("hello, world!");
 }
 
-void displayLCD(float temp, float UV, uint16_t moisture, char* plant) {
+void displayLCD(float temp, float UV, uint16_t moisture, String plant) {
   Serial.print("Species: ");
   Serial.print(plant);
   Serial.print("\t\t");
