@@ -13,5 +13,10 @@ void whenSound () {
 }
 
 int checkSound() {
-  return soundDetectedVal;
+  if (soundDetectedVal) {
+    soundDetectedVal = false;
+    return true;
+  }
+  else
+    return false;
 }

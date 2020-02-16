@@ -4,24 +4,24 @@
 // DATE:    2020-20-15
 // STATUS:  Broken as hell
 
+float temp;
+uint16_t moist;
+float UV;
 String plant = "PLANT";
 
 void setup() {
   Serial.begin(9600);
-  
   lcdSetup();
   UVSetup();
   MSSetup();
   tempSetup();
   soundSetup();
-  buttonSetup();
 }
 
 void loop() {
-  float temp = getTemp();
-  uint16_t moist = getMoisture(plant);
-  float UV = getUV();
-  displayLCD(temp, UV, moist, "PLANT", checkSound());
-  checkSound();
+  temp = getTemp();
+  moist = getMoisture(plant);
+  UV = getUV();
+  displayLCD(temp, UV, moist, plant, checkSound());
   delay(1000);
 }
