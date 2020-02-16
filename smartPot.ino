@@ -14,6 +14,7 @@ void setup() {
   MSSetup();
   tempSetup();
   soundSetup();
+  buttonSetup();
 }
 
 void loop() {
