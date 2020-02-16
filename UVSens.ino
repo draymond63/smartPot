@@ -10,17 +10,19 @@
 int UVOUT = A2; //Output from the sensor
 
 void UVSetup() {
+  Serial.begin(9600);
   pinMode(UVOUT, INPUT);
 }
 
-uint16_t getUV() {
+float getUV() {
   int uvLevel = averageAnalogRead(UVOUT);
 
   //Use the 3.3V power pin as a reference to get a very accurate output value from sensor
   float outputVoltage = 0.005 * uvLevel;
 
   float uvIntensity = mapfloat(outputVoltage, 0.99, 2.8, 0.0, 15.0); //Convert the voltage to a UV intensity level
-  
+
+//  Serial.println(uvIntensity);  
   return uvIntensity;
 }
 

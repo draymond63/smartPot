@@ -11,6 +11,7 @@ void setup() {
   UVSetup();
   MSSetup();
   tempSetup();
+  soundSetup();
 }
 
 void loop() {
@@ -18,5 +19,6 @@ void loop() {
   uint16_t moist = getMoisture();
   float UV = getUV();
   displayLCD(temp, UV, moist, "PLANT");
+  checkSound();
   delay(1000);
 }
