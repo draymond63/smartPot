@@ -6,7 +6,7 @@ int screen = 0;
 struct plant {
   String n;       // Name
   
-  float tMin;  // Temperature Range
+  float tMin;     // Temperature Range
   float tMax;
   
   uint16_t uvMin; // Hours in the sun (25 000 -> 50 000 lux) XXX (currently just strength)
@@ -19,9 +19,6 @@ struct plant {
 struct plant Cactus   {"Cactus", 0, 73, 200, 500, 10, 50};
 struct plant Succulent{"Succulent", 10, 35, 175, 400, 30, 70};
 struct plant SunFlower{"Sun Flower", 20, 40, 200, 1000, 40, 80};
-//struct plant Cactus   {"Cactus", 0, 73, 4, 15, 10, 50};
-//struct plant Succulent{"Succulent", 10, 35, 6, 10, 30, 70};
-//struct plant SunFlower{"Sun Flower", 20, 40, 8, 22, 40, 80};
 
 struct plant plants[] {
   Cactus,
@@ -32,7 +29,6 @@ struct plant plants[] {
 // -------------------------------- SETUP
 void lcdSetup() {
   lcd.begin(16, 2);
-  lcd.print("Welcome!");
 }
 
 // -------------------------------- LOOP
