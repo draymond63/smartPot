@@ -1,6 +1,8 @@
 # smartPot
 Our project allows the user to get realtime data of their plant. 
 
+This was submitted to the MakeUofT 2020 hackathon. 
+
 ### LCD Display
 
 This allows plant data to be displayed to the user on a compact screen. 
