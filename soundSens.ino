@@ -2,8 +2,7 @@
 int soundDetectedPin = 3; // Use Pin 10 as our Input
 int soundDetectedVal = LOW; // This is where we record our Sound Measurement
 
-void soundSetup ()
-{
+void soundSetup () {
   pinMode (soundDetectedPin, INPUT) ; // input from the Sound Detection Module
   attachInterrupt(digitalPinToInterrupt(soundDetectedPin), whenSound, RISING);
 }

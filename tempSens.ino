@@ -15,11 +15,7 @@
 float VThermo, VRes;          //Voltage Read at Thermo & at Resistor
 float RThermo;                //Resistance Caused
 float TempC, TempF, TempK;    //Temp in Celsius, Farenheit, Kelvin
-float ln;    
-
-void tempSetup() {
-  
-}
+float ln;
 
 float getTemp() {
   VThermo = analogRead(A1); //change analog pin accordingly

@@ -7,10 +7,6 @@
 #define SensorPin A0 
 uint16_t sensorValue = 0; 
 
-void MSSetup() {
-
-}
-
 uint16_t getMoisture() {
   return constrain(map(analogRead(SensorPin), 0, 1023, 100, 0), 0, 100);
 }

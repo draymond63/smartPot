@@ -16,9 +16,12 @@ struct plant {
   uint16_t mMax;
 };
 //                      Name      Temp    UV    Moisture
-struct plant Cactus   {"Cactus", 0, 73, 4, 15, 10, 50};
-struct plant Succulent{"Succulent", 10, 35, 6, 10, 30, 70};
-struct plant SunFlower{"Sun Flower", 20, 40, 8, 22, 40, 80};
+struct plant Cactus   {"Cactus", 0, 73, 200, 500, 10, 50};
+struct plant Succulent{"Succulent", 10, 35, 175, 400, 30, 70};
+struct plant SunFlower{"Sun Flower", 20, 40, 200, 1000, 40, 80};
+//struct plant Cactus   {"Cactus", 0, 73, 4, 15, 10, 50};
+//struct plant Succulent{"Succulent", 10, 35, 6, 10, 30, 70};
+//struct plant SunFlower{"Sun Flower", 20, 40, 8, 22, 40, 80};
 
 struct plant plants[] {
   Cactus,
@@ -54,12 +57,14 @@ void displayLCD(float temp, uint16_t UV, uint16_t moisture, int pType, int chang
       break;
   }
 }
+
 // -------------------------------- SCREENS
 void tempS(struct plant p, float t) {
   String str = "Temp: ";
   str += String(t);
   str += " C";
   lcd.print(str);
+  Serial.println(t);
   lcd.setCursor(0, 1);
   
   if (t < p.tMin)
@@ -74,7 +79,6 @@ void moistureS(struct plant p, uint16_t m) {
   lcd.print("Moisture: ");
   lcd.setCursor(0, 1);
   String str;
-
   Serial.println(m);
   
   if (m < p.mMin)
@@ -91,17 +95,14 @@ void UVS(struct plant p, uint16_t l) {
   str += String(l);
   str += " uW/cm^2";
   lcd.print(str);
-
   Serial.print(l);
-  Serial.print(", ");
-  Serial.println(p.uvMax);
 
   if (l < p.uvMin)
-    str = "Needs water!";
+    str = "Needs more sun!";
   else if (l >= p.uvMin && l < p.uvMax)
     str = "Perfect";
   else
-    str = "Too much!";
+    str = "Too much sun!";
 
   lcd.setCursor(0, 1);
   lcd.print(str);

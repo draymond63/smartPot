@@ -17,8 +17,6 @@ void setup() {
   Serial.begin(9600);
   lcdSetup();
   UVSetup();
-  MSSetup();
-  tempSetup();
   soundSetup();
 }
 
